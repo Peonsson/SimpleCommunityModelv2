@@ -9,6 +9,7 @@ import javax.persistence.EntityManagerFactory;
 import javax.persistence.Persistence;
 import javax.persistence.Query;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 
 /**
@@ -21,6 +22,7 @@ public class PrivateMessageDB {
     public static boolean submit(PrivateMessage pm) {
         EntityManager em = emf.createEntityManager();
 
+        pm.setTimestamp(new Date());
         try {
             em.getTransaction().begin();
             em.persist(pm);

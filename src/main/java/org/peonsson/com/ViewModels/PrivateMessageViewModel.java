@@ -27,6 +27,13 @@ public class PrivateMessageViewModel {
         this.timestamp = timestamp;
     }
 
+    public PrivateMessageViewModel(String sender, String receiver, String subject, String message) {
+        this.sender = sender;
+        this.receiver = receiver;
+        this.subject = subject;
+        this.message = message;
+    }
+
     public String getSender() {
         return sender;
     }
