@@ -22,12 +22,12 @@ public class LogHandler {
         return new ReturnBooleanViewModel(bool);
     }
 
-    @GET
-    public static List<LogViewModel> getLogs() {
-        List<LogViewModel> logs = UserLog.getLogs();
-        System.out.println(logs.toString());
-        return logs;
-    }
+//    @GET
+//    public static List<LogViewModel> getLogs() {
+//        List<LogViewModel> logs = UserLog.getLogs();
+//        System.out.println(logs.toString());
+//        return logs;
+//    }
 
     @GET
     @Path("/{id}")

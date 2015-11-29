@@ -113,18 +113,8 @@ public class UserLog {
         return LogDB.submit(log);
     }
 
-    public static List<LogViewModel> getLogs() {
-        // TODO: MOVE TO CORRECT LOCATION (SHOULD BE IN PRESENTATION NOT MODEL)
-//        int userId = (Integer) SessionBean.getSession().getAttribute("userId");
-        int userId = 5;
-        User user = UserDB.getUser(userId);
-        System.out.println("THIS IS WHAT WE WANT PLZ:\n" + user.toString());
-        return LogDB.getLogs(user);
-    }
-
     public static List<LogViewModel> getLogs(int id) {
         User user = UserDB.getUser(id);
-        System.out.println("THIS IS WHAT WE WANT PLZ:\n" + user.toString());
         return LogDB.getLogs(user);
     }
 
