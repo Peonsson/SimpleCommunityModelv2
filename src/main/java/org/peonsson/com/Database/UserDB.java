@@ -68,7 +68,6 @@ public class UserDB {
         System.out.println("UserDB: GOT browse");
         List<UserViewModel> users = new ArrayList<UserViewModel>();
 
-//        EntityManagerFactory emf = Persistence.createEntityManagerFactory("SimpleCommunity");
         EntityManager em = emf.createEntityManager();
 
         try {
@@ -77,6 +76,7 @@ public class UserDB {
 
             for (int i = 0; i < list.size(); i++) {
                 User current = (User) list.get(i);
+                int id = current.getUserId();
                 String email = current.getEmail();
                 String username = current.getUsername();
                 String firstname = current.getFirstname();
@@ -84,7 +84,7 @@ public class UserDB {
                 String country = current.getCountry();
                 String city = current.getCity();
 
-                users.add(new UserViewModel(email, username, firstname, lastname, country, city));
+                users.add(new UserViewModel(id, email, username, firstname, lastname, country, city));
             }
 
         } catch (Exception e) {
@@ -134,6 +134,7 @@ public class UserDB {
 
             User user = (User) list.get(0);
 
+            newUser.setId(user.getUserId());
             newUser.setEmail(user.getEmail());
             newUser.setCity(user.getCity());
             newUser.setCountry(user.getCountry());

@@ -9,6 +9,7 @@ import javax.xml.bind.annotation.XmlRootElement;
 @XmlRootElement
 public class UserViewModel {
 
+    private int id;
     private String email;
     private String username;
     private String firstname;
@@ -19,13 +20,22 @@ public class UserViewModel {
     public UserViewModel() {
     }
 
-    public UserViewModel(String email, String username, String firstname, String lastname, String country, String city) {
+    public UserViewModel(int id, String email, String username, String firstname, String lastname, String country, String city) {
+        this.id = id;
         this.email = email;
         this.username = username;
         this.firstname = firstname;
         this.lastname = lastname;
         this.country = country;
         this.city = city;
+    }
+
+    public int getId() {
+        return id;
+    }
+
+    public void setId(int id) {
+        this.id = id;
     }
 
     public String getEmail() {
