@@ -26,7 +26,7 @@ public class LogDB {
 
         try {
             UserLog userLog = new UserLog();
-
+            System.out.println("Log id: " + log.getId());
             User user = UserDB.getUser(log.getId());
 
             userLog.setUserId(user);
@@ -48,7 +48,7 @@ public class LogDB {
 
     public static List<LogViewModel> getLogs(User user) {
 
-        System.out.println("LogDB: user id = " + user.getUserId());
+        System.out.println(user.toString());
 
         EntityManager em = emf.createEntityManager();
 
@@ -56,6 +56,7 @@ public class LogDB {
         query.setParameter("user", user);
         List<UserLog> logs = query.getResultList();
 
+        System.out.println(logs.size());
 
         List<LogViewModel> returnList = new ArrayList<>();
         for (UserLog log : logs) {

@@ -74,7 +74,7 @@ public class UserLog {
     }
 
     public void setUserId(User userId) {
-        this.user = user;
+        this.user = userId;
     }
 
     public Date getTimestamp() {
@@ -116,7 +116,7 @@ public class UserLog {
     public static List<LogViewModel> getLogs() {
         // TODO: MOVE TO CORRECT LOCATION (SHOULD BE IN PRESENTATION NOT MODEL)
 //        int userId = (Integer) SessionBean.getSession().getAttribute("userId");
-        int userId = 4;
+        int userId = 5;
         User user = UserDB.getUser(userId);
         System.out.println("THIS IS WHAT WE WANT PLZ:\n" + user.toString());
         return LogDB.getLogs(user);

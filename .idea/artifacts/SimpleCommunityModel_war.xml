@@ -1,0 +1,8 @@
+<component name="ArtifactManager">
+  <artifact type="war" name="SimpleCommunityModel:war">
+    <output-path>$PROJECT_DIR$/target</output-path>
+    <root id="archive" name="SimpleCommunityModel.war">
+      <element id="artifact" artifact-name="SimpleCommunityModel:war exploded" />
+    </root>
+  </artifact>
+</component>

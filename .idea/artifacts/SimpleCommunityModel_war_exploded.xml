@@ -1,6 +1,6 @@
 <component name="ArtifactManager">
   <artifact type="exploded-war" build-on-make="true" name="SimpleCommunityModel:war exploded">
-    <output-path>$PROJECT_DIR$/out/artifacts/SimpleCommunityModel_war_exploded</output-path>
+    <output-path>$PROJECT_DIR$/target/SimpleCommunityModel</output-path>
     <root id="root">
       <element id="directory" name="WEB-INF">
         <element id="directory" name="classes">
@@ -43,6 +43,9 @@
           <element id="library" level="project" name="Maven: org.eclipse.persistence:org.eclipse.persistence.asm:2.5.0" />
           <element id="library" level="project" name="Maven: org.eclipse.persistence:org.eclipse.persistence.antlr:2.5.0" />
         </element>
+      </element>
+      <element id="directory" name="META-INF">
+        <element id="file-copy" path="$PROJECT_DIR$/target/SimpleCommunityModel/META-INF/MANIFEST.MF" />
       </element>
       <element id="javaee-facet-resources" facet="SimpleCommunityModel/web/Web" />
     </root>

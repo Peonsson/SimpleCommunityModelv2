@@ -24,7 +24,9 @@ public class LogHandler {
 
     @GET
     public static List<LogViewModel> getLogs() {
-        return UserLog.getLogs();
+        List<LogViewModel> logs = UserLog.getLogs();
+        System.out.println(logs.toString());
+        return logs;
     }
 
     @GET
