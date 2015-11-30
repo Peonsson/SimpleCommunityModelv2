@@ -15,12 +15,15 @@ import java.util.List;
  * Created by robin on 11/11/15.
  */
 public class UserDB {
-
     private static EntityManagerFactory emf = Persistence.createEntityManagerFactory("SimpleCommunity");
 
+    /**
+     * DB method for registering a new user
+     *
+     * @param user  the user to register
+     * @return      true if succeeded, false if failed
+     */
     public static boolean registerUser(User user) {
-        System.out.println("UserDB: registerUser");
-
         EntityManagerFactory emf = Persistence.createEntityManagerFactory("SimpleCommunity");
         EntityManager em = emf.createEntityManager();
 
@@ -36,9 +39,13 @@ public class UserDB {
         return true;
     }
 
+    /**
+     * DB method for logging in a user
+     *
+     * @param model the information user typed in form
+     * @return      a user object matching the username that was entered
+     */
     public static User loginUser(LoginViewModel model) {
-        System.out.println("UserDB: GOT loginUser");
-//        EntityManagerFactory emf = Persistence.createEntityManagerFactory("SimpleCommunity");
         EntityManager em = emf.createEntityManager();
 
         String username = model.getUsername();
@@ -46,14 +53,10 @@ public class UserDB {
 
         User user;
         try {
-
             Query query = em.createQuery("from User where username = :username");
             query.setParameter("username", username);
             List list = query.getResultList();
             user = (User) list.get(0);
-
-//            System.out.println("UserDB user: " + user.getUsername());
-//            System.out.println("UserDB pass: " + user.getPassword());
 
         } catch (Exception e) {
             System.err.println(e.getMessage());
@@ -64,8 +67,12 @@ public class UserDB {
         return user;
     }
 
+    /**
+     * DB method for getting a list of all users.
+     *
+     * @return  a list of all users
+     */
     public static List<UserViewModel> getUsers() {
-        System.out.println("UserDB: GOT browse");
         List<UserViewModel> users = new ArrayList<UserViewModel>();
 
         EntityManager em = emf.createEntityManager();
@@ -88,19 +95,22 @@ public class UserDB {
             }
 
         } catch (Exception e) {
-            System.err.println(e.getMessage());
+            e.printStackTrace();
             return null;
         } finally {
             em.close();
         }
 
-        System.out.println(users.toString());
         return users;
     }
 
+    /**
+     * DB method for getting a specific user
+     *
+     * @param id    the id of the user
+     * @return      a user object with information about the user
+     */
     public static User getUser(int id) {
-        System.out.println("UserDB: GOT getUser");
-
         EntityManager em = emf.createEntityManager();
 
         User user;
@@ -112,7 +122,7 @@ public class UserDB {
             user = (User) list.get(0);
 
         } catch (Exception e) {
-            System.err.println(e.getMessage());
+            e.printStackTrace();
             return null;
         } finally {
             em.close();
@@ -120,14 +130,17 @@ public class UserDB {
         return user;
     }
 
+    /**
+     * DB method for getting a specific user
+     *
+     * @param id    the id of the user
+     * @return      a view model object with information about the user
+     */
     public static UserViewModel getUserViewModel(int id) {
-        System.out.println("UserDB: GOT getUser");
-
         EntityManager em = emf.createEntityManager();
 
         UserViewModel newUser = new UserViewModel();
         try {
-
             Query query = em.createQuery("from User where userId = :id");
             query.setParameter("id", id);
             List list = query.getResultList();
@@ -143,45 +156,11 @@ public class UserDB {
             newUser.setUsername(user.getUsername());
 
         } catch (Exception e) {
-            System.err.println(e.getMessage());
+            e.printStackTrace();
             return null;
         } finally {
             em.close();
         }
         return newUser;
-    }
-
-    public static void addFriend(User user, User otherUser) {
-        EntityManager em = emf.createEntityManager();
-
-        try {
-            Query query = em.createQuery("from User where userId = :id");
-            query.setParameter("id", user.getUserId());
-            User thisUser = (User) query.getResultList().get(0);
-
-            List<User> friends = thisUser.getFriends();
-            System.out.println("UserDB: friends: " + friends.toString());
-
-            for (User current : friends) {
-                System.out.println("USerDB: otherUser : " + otherUser.toString());
-                System.out.println("UserDB: current User: " + current.toString());
-                if (current.getUserId() == otherUser.getUserId()) {
-                    // If user already exists in list, don't add again
-                    return;
-                }
-            }
-
-            friends.add(otherUser);
-
-            em.getTransaction().begin();
-            em.persist(thisUser);
-            em.getTransaction().commit();
-        }
-        catch (Exception e) {
-            e.printStackTrace();
-        }
-        finally {
-            em.close();
-        }
     }
 }

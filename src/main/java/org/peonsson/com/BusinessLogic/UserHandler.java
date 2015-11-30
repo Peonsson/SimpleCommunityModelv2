@@ -17,6 +17,12 @@ import java.util.List;
 @Consumes("application/json")
 public class UserHandler {
 
+    /**
+     * REST method for registering a new user.
+     *
+     * @param user  the user to register
+     * @return      status code indicating success or failure
+     */
     @POST
     @Path("/register")
     public static Response registerUser(User user) {
@@ -29,29 +35,38 @@ public class UserHandler {
         }
     }
 
+    /**
+     * REST method for login in.
+     *
+     * @param model view model holding username and password
+     * @return      a return code indicating success or failure
+     */
     @POST
     @Path("/login")
     public static ReturnCodeViewModel loginUser(LoginViewModel model) {
-        System.err.println("suka");
-        System.out.println("Usr handler: username = " + model.getUsername() + "\npassword = " + model.getPassword());
-
         int id = User.login(model);
         return new ReturnCodeViewModel(id);
     }
 
+    /**
+     * REST method for getting a list of all users.
+     *
+     * @return  a list with users
+     */
     @GET
     public static List<UserViewModel> getUsers() {
         return User.getUsers();
     }
 
+    /**
+     * REST method for getting information about a specific user.
+     *
+     * @param id    the id of the user
+     * @return      a json with information about the user
+     */
     @GET
     @Path("/{id}")
     public static UserViewModel getUser(@PathParam("id") int id) {
         return User.getUserViewModel(id);
-    }
-
-
-    public static void addFriend(int userToAddAsFriend) {
-        User.addFriend(userToAddAsFriend);
     }
 }

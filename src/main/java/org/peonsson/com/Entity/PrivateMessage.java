@@ -12,7 +12,7 @@ import java.util.Date;
 import java.util.List;
 
 /**
- * Created by Peonsson and roppe546.
+ * Created by Peonsson and robin.
  *
  * This class represents a log entry that a user writes.
  */
@@ -26,13 +26,11 @@ public class PrivateMessage {
     @GeneratedValue(strategy = GenerationType.AUTO)
     private int privateMessageId;
 
-//    @Column(name = "Sender")
     @ManyToOne
     @JoinColumn(name = "Sender")
     @NotNull
     private User sender;
 
-//    @Column(name = "Receiver")
     @ManyToOne
     @JoinColumn(name = "Receiver")
     @NotNull
@@ -142,8 +140,13 @@ public class PrivateMessage {
                 '}';
     }
 
+    /**
+     * Method for submitting a new pm
+     *
+     * @param privateMessage    the pm to submit
+     * @return                  boolean indicating success (true) or failure (false)
+     */
     public static boolean submit(PrivateMessageViewModel privateMessage) {
-
         int senderId = Integer.parseInt(privateMessage.getSender());
         int receiverId = Integer.parseInt(privateMessage.getReceiver());
 
@@ -151,25 +154,22 @@ public class PrivateMessage {
         User receiver = UserDB.getUser(receiverId);
 
         if (sender != null && receiver != null) {
-            System.out.println("PrivateMessage: Sender: " + sender.toString());
-            System.out.println("PrivateMessage: Receiver: " + receiver.toString());
-
             PrivateMessage pm = new PrivateMessage(sender, receiver, privateMessage.getSubject(), privateMessage.getMessage());
 
             return PrivateMessageDB.submit(pm);
         }
         else {
-            System.out.println("SENDER OR RECEIVER NULL");
             return false;
         }
     }
 
-
-
+    /**
+     * Fetch private messages for user with specific id.
+     *
+     * @param id    id of the user
+     * @return      a list of pms meant for the user
+     */
     public static List<PrivateMessageViewModel> fetchPrivateMessages(int id) {
-        // TODO: MOVE TO CORRECT LOCATION (SHOULD BE IN PRESENTATION NOT MODEL)
-//        int userId = (Integer) SessionBean.getSession().getAttribute("userId");
-
         User user = UserDB.getUser(id);
         return PrivateMessageDB.fetchPrivateMessages(user);
     }

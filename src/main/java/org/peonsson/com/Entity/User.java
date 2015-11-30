@@ -12,7 +12,7 @@ import java.util.List;
 
 /**
  * Created by Peonsson and roppe546.
- * <p>
+ *
  * This class describes user entities in database.
  */
 
@@ -172,25 +172,52 @@ public class User {
         this.city = city;
     }
 
+    /**
+     * Register a new user
+     *
+     * @param user  new user to register
+     * @return      boolean indicating success (true) or failure (false)
+     */
     public static boolean register(User user) {
         return UserDB.registerUser(user);
     }
 
+    /**
+     *  Allow user to log in if password matches password in db or deny access if they
+     *  don't match.
+     *
+     * @param model view model holding form data
+     * @return      return user id if correct data, -1 if incorrect
+     */
     public static int login(LoginViewModel model) {
         User user = UserDB.loginUser(model);
 
         if (user != null) {
             if (user.username.equals(model.getUsername()) && user.password.equals(model.getPassword())) {
-                System.out.println("User: have successfully logged in!");
                 return user.getUserId();
             }
         }
-        System.err.println("User: login failed.");
+
         return -1;
     }
 
+    /**
+     * Get list of users
+     *
+     * @return  list of users
+     */
     public static List<UserViewModel> getUsers() {
         return UserDB.getUsers();
+    }
+
+    /**
+     * Get user view model for specific user
+     *
+     * @param id    user id
+     * @return      view model for that user (not including password)
+     */
+    public static UserViewModel getUserViewModel(int id) {
+        return UserDB.getUserViewModel(id);
     }
 
     @Override
@@ -205,25 +232,5 @@ public class User {
                 ", country='" + country + '\'' +
                 ", city='" + city + '\'' +
                 '}';
-    }
-
-    public static UserViewModel getUserViewModel(int id) {
-        return UserDB.getUserViewModel(id);
-    }
-
-    public static void addFriend(int userToAddAsFriend) {
-        // TODO: MOVE TO CORRECT LOCATION (SHOULD BE IN PRESENTATION NOT MODEL)
-//        int userId = (Integer)SessionBean.getSession().getAttribute("userId");
-        int userId = 1;
-//        User myself = User.getUser(userId);
-//        User otherUser = User.getUser(userToAddAsFriend);
-
-//        System.out.println("Myself id : " + myself.getUserId());
-        System.out.println("Member to add as friend : " + userToAddAsFriend);
-
-//        UserDB.addFriend(myself, otherUser);
-//        User friend = User.getUser(friendId);
-//        myself.getFriends(friend);
-
     }
 }

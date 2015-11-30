@@ -1,6 +1,5 @@
 package org.peonsson.com.Database;
 
-import org.peonsson.com.BusinessLogic.UserHandler;
 import org.peonsson.com.Entity.User;
 import org.peonsson.com.Entity.UserLog;
 import org.peonsson.com.ViewModels.LogViewModel;
@@ -21,12 +20,17 @@ public class LogDB {
 
     private static EntityManagerFactory emf = Persistence.createEntityManagerFactory("SimpleCommunity");
 
+    /**
+     * DB method for submitting new log post.
+     *
+     * @param log   log post to submit
+     * @return      true if succeed, false if failure
+     */
     public static boolean submit(SubmitNewLogViewModel log) {
         EntityManager em = emf.createEntityManager();
 
         try {
             UserLog userLog = new UserLog();
-            System.out.println("Log id: " + log.getId());
             User user = UserDB.getUser(log.getId());
 
             userLog.setUserId(user);
@@ -46,17 +50,18 @@ public class LogDB {
         }
     }
 
+    /**
+     * DB method for getting logs belonging to a user
+     *
+     * @param user  the user
+     * @return      list with logs belonging to the user
+     */
     public static List<LogViewModel> getLogs(User user) {
-
-        System.out.println(user.toString());
-
         EntityManager em = emf.createEntityManager();
 
         Query query = em.createQuery("from UserLog where user = :user");
         query.setParameter("user", user);
         List<UserLog> logs = query.getResultList();
-
-        System.out.println(logs.size());
 
         List<LogViewModel> returnList = new ArrayList<>();
         for (UserLog log : logs) {

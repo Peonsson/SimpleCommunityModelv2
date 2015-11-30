@@ -16,12 +16,23 @@ import java.util.List;
 @Consumes("application/json")
 public class LogHandler {
 
+    /**
+     * Submit a new log REST method.
+     *
+     * @param log   the log to be submitted
+     * @return      json indicating success or failure
+     */
     @POST
     public static ReturnBooleanViewModel submit(SubmitNewLogViewModel log) {
         boolean bool = UserLog.submit(log);
         return new ReturnBooleanViewModel(bool);
     }
 
+    /**
+     * Return all user logs REST method.
+     *
+     * @return      a list of all logs
+     */
 //    @GET
 //    public static List<LogViewModel> getLogs() {
 //        List<LogViewModel> logs = UserLog.getLogs();
@@ -29,6 +40,12 @@ public class LogHandler {
 //        return logs;
 //    }
 
+    /**
+     * Get logs by user id REST method.
+     *
+     * @param id    id of user
+     * @return      list of logs belonging to user
+     */
     @GET
     @Path("/{id}")
     public static List<LogViewModel> getLogs(@PathParam("id") int id) {

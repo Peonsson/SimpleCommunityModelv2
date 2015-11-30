@@ -1,6 +1,5 @@
 package org.peonsson.com.BusinessLogic;
 
-
 import org.peonsson.com.Entity.PrivateMessage;
 import org.peonsson.com.ViewModels.PrivateMessageViewModel;
 import org.peonsson.com.ViewModels.ReturnBooleanViewModel;
@@ -16,12 +15,24 @@ import java.util.List;
 @Consumes("application/json")
 public class PrivateMessageHandler {
 
+    /**
+     * Submit new PM REST method
+     *
+     * @param privateMessage    the private message (pm) to submit
+     * @return                  a json indicating success or failure
+     */
     @POST
     public static ReturnBooleanViewModel submit(PrivateMessageViewModel privateMessage) {
         boolean bool = PrivateMessage.submit(privateMessage);
         return new ReturnBooleanViewModel(bool);
     }
 
+    /**
+     * Get all PMs for a specific user
+     *
+     * @param id    the id of the user
+     * @return      a list of pms meant for the user
+     */
     @GET
     @Path("/{id}")
     public static List<PrivateMessageViewModel> fetchPrivateMessages(@PathParam("id") int id) {

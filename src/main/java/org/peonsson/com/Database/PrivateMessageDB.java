@@ -18,7 +18,12 @@ import java.util.List;
 public class PrivateMessageDB {
     private static EntityManagerFactory emf = Persistence.createEntityManagerFactory("SimpleCommunity");
 
-
+    /**
+     * DB method for submitting a new pm.
+     *
+     * @param pm    the pm to submit
+     * @return      true if succeeded, false if failed
+     */
     public static boolean submit(PrivateMessage pm) {
         EntityManager em = emf.createEntityManager();
 
@@ -37,16 +42,25 @@ public class PrivateMessageDB {
         }
     }
 
+    /**
+     * DB method for fetching pms meant for a specific user.
+     *
+     * @param user  the user
+     * @return      a list of pms meant for the user
+     */
     public static List<PrivateMessageViewModel> fetchPrivateMessages(User user) {
         EntityManager em = emf.createEntityManager();
 
         Query query = em.createQuery("from PrivateMessage where receiver = :rec");
         query.setParameter("rec", user);
+
         List<PrivateMessage> list = query.getResultList();
         List<PrivateMessageViewModel> myList = new ArrayList<>();
+
         for(PrivateMessage m: list) {
             myList.add(new PrivateMessageViewModel(m.getSender().getUsername(), m.getReceiver().getUsername(), m.getSubject(), m.getMessage(), m.getTimestamp()));
         }
+
         return myList;
     }
 }

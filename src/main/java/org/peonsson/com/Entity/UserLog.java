@@ -13,7 +13,7 @@ import java.util.Date;
 import java.util.List;
 
 /**
- * Created by Peonsson and roppe546.
+ * Created by Peonsson and robin.
  *
  * This class represents a log entry that a user writes.
  */
@@ -29,7 +29,6 @@ public class UserLog {
 
     @ManyToOne
     @JoinColumn(name = "UserId")
-//    @Column(name = "User")
     private User user;
 
     @Column(name = "Timestamp")
@@ -101,18 +100,32 @@ public class UserLog {
         this.message = message;
     }
 
+    /**
+     * Submit a new log.
+     *
+     * @param log   the log to submit
+     * @return      boolean indicating success (true) or failure (false)
+     */
     public static boolean submit(SubmitNewLogViewModel log) {
         User user = UserDB.getUser(log.getId());
-        if(user != null) {
+
+        // TODO: Remove this code
+        if (user != null) {
             System.out.println(user.toString());
-        } else {
-            System.err.println("USER IS NULL!");
+        }
+        else {
             return false;
         }
 
         return LogDB.submit(log);
     }
 
+    /**
+     * Return a list of logs belonging to a user.
+     *
+     * @param id    user id
+     * @return      a list of logs belonging to the user
+     */
     public static List<LogViewModel> getLogs(int id) {
         User user = UserDB.getUser(id);
         return LogDB.getLogs(user);
