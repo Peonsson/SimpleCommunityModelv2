@@ -59,7 +59,7 @@ public class UserDB {
             user = (User) list.get(0);
 
         } catch (Exception e) {
-            System.err.println(e.getMessage());
+            e.printStackTrace();
             return null;
         } finally {
             em.close();

@@ -41,7 +41,7 @@ public class LogDB {
             em.persist(userLog);
             em.getTransaction().commit();
         } catch (Exception e) {
-            System.err.println(e.getMessage());
+            e.printStackTrace();
             em.close();
             return false;
         } finally {

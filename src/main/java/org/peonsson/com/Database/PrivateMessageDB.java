@@ -33,7 +33,7 @@ public class PrivateMessageDB {
             em.persist(pm);
             em.getTransaction().commit();
         } catch (Exception e) {
-            System.err.println(e.getMessage());
+            e.printStackTrace();
             em.close();
             return false;
         } finally {

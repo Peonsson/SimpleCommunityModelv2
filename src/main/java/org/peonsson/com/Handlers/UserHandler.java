@@ -26,7 +26,6 @@ public class UserHandler {
     @POST
     @Path("/register")
     public static Response registerUser(User user) {
-        System.out.println(user.toString());
         if(User.register(user)) {
             return Response.status(Response.Status.CREATED).build();
         }
