@@ -11,7 +11,7 @@ import javax.validation.constraints.NotNull;
 import java.util.List;
 
 /**
- * Created by Peonsson and roppe546.
+ * Created by Peonsson and robin.
  *
  * This class describes user entities in database.
  */
