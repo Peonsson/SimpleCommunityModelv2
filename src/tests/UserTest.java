@@ -1,6 +1,5 @@
-import org.eclipse.persistence.sessions.Login;
 import org.junit.Test;
-import org.peonsson.com.BusinessLogic.UserHandler;
+import org.peonsson.com.Handlers.UserHandler;
 import org.peonsson.com.ViewModels.LoginViewModel;
 import org.peonsson.com.ViewModels.ReturnCodeViewModel;
 import org.peonsson.com.ViewModels.UserViewModel;

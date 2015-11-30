@@ -1,4 +1,4 @@
-package org.peonsson.com.BusinessLogic;
+package org.peonsson.com.Handlers;
 
 import org.peonsson.com.Entity.UserLog;
 import org.peonsson.com.ViewModels.LogViewModel;

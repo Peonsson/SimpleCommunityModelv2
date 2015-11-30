@@ -1,4 +1,4 @@
-package org.peonsson.com.BusinessLogic;
+package org.peonsson.com.Handlers;
 
 import org.peonsson.com.Entity.User;
 import org.peonsson.com.ViewModels.LoginViewModel;

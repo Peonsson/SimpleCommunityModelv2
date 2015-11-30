@@ -1,5 +1,5 @@
 import org.junit.Test;
-import org.peonsson.com.BusinessLogic.LogHandler;
+import org.peonsson.com.Handlers.LogHandler;
 import org.peonsson.com.ViewModels.LogViewModel;
 import org.peonsson.com.ViewModels.ReturnBooleanViewModel;
 import org.peonsson.com.ViewModels.SubmitNewLogViewModel;

@@ -1,4 +1,4 @@
-package org.peonsson.com.BusinessLogic;
+package org.peonsson.com.Handlers;
 
 import org.peonsson.com.Entity.PrivateMessage;
 import org.peonsson.com.ViewModels.PrivateMessageViewModel;

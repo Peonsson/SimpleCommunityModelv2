@@ -1,13 +1,7 @@
 import org.junit.Test;
-import org.peonsson.com.BusinessLogic.LogHandler;
-import org.peonsson.com.BusinessLogic.PrivateMessageHandler;
-import org.peonsson.com.Entity.PrivateMessage;
+import org.peonsson.com.Handlers.PrivateMessageHandler;
 import org.peonsson.com.ViewModels.*;
 
-import javax.ws.rs.GET;
-import javax.ws.rs.POST;
-import javax.ws.rs.Path;
-import javax.ws.rs.PathParam;
 import java.util.Date;
 import java.util.List;
 
