@@ -13,7 +13,6 @@ import static org.junit.Assert.assertTrue;
  * Created by robin on 19/11/15.
  */
 public class UserTest {
-
     @Test
     public void testBrowse() throws Exception {
         List<UserViewModel> users = UserHandler.getUsers();

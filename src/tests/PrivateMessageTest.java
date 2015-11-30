@@ -17,18 +17,6 @@ import static org.junit.Assert.assertTrue;
  * Created by robin on 24/11/15.
  */
 public class PrivateMessageTest {
-//    @POST
-//    public static ReturnBooleanViewModel submit(PrivateMessageViewModel privateMessage) {
-//        boolean bool = PrivateMessage.submit(privateMessage);
-//        return new ReturnBooleanViewModel(bool);
-//    }
-//
-//    @GET
-//    @Path("/{id}")
-//    public static List<PrivateMessageViewModel> fetchPrivateMessages(@PathParam("id") int id) {
-//        return PrivateMessage.fetchPrivateMessages(id);
-//    }
-
     @Test
     public void testCreateNewPMSucceed() throws Exception {
         PrivateMessageViewModel pm = new PrivateMessageViewModel("1", "2", "TEST SUBJ", "TEST MESS", new Date());
